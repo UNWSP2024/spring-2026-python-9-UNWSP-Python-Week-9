@@ -3,3 +3,28 @@
 # Each random number should be in the range of 1 through 500. 
 # The application should let the user specify how many random numbers the file will hold 
 # (up to 1000).
+
+import random
+
+def write_random_numbers(filename):
+    try:
+        amount = int(input("How many random numbers do you want (max 1000)? "))
+        
+        if amount < 1 or amount > 1000:
+            print("Please enter a number between 1 and 1000.")
+            return
+        
+        with open(filename, 'w') as file:
+            for _ in range(amount):
+                number = random.randint(1, 500)
+                file.write(str(number) + '\n')
+        
+        print(f"{amount} random numbers have been written to {filename}.")
+    
+    except ValueError:
+        print("Error: Please enter a valid integer.")
+    except IOError:
+        print("Error: The file could not be written.")
+
+# Run the program
+write_random_numbers("random_numbers.txt")

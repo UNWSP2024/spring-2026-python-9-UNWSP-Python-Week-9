@@ -10,7 +10,31 @@
 # are converted to a number.
 def sum_numbers_from_file():
     ######################
-    # Add your code here #
+    def calculate_total(filename):
+    total = 0
+    count = 0
+
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                try:
+                    number = int(line.strip())
+                    total += number
+                    count += 1
+                except ValueError:
+                    print(f"Warning: Skipping invalid value: {line.strip()}")
+        
+        if count > 0:
+            print(f"Total: {total}")
+            print(f"Average: {total / count}")
+        else:
+            print("No valid numbers found in the file.")
+    
+    except IOError:
+        print("Error: The file could not be read.")
+
+# Run the program
+calculate_total("numbers.txt")
     ######################
     print('In the sum_numbers_from_file function')
 
